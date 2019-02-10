@@ -1,0 +1,598 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>15.0</VCProjectVersion>
+    <ProjectGuid>{65488465-2CFC-46CC-BF64-24A929AF7DE8}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>UbiBlur</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(ProjectDir)</IncludePath>
+    <LibraryPath>$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(NETFXKitsDir)Lib\um\x86;$(ProjectDir)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions);GLFW_STATIC</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>$(ProjectDir)/ThirdParty/glad/include;$(ProjectDir)/OpenGL/Core;$(ProjectDir)/ThirdParty/glfw/include;$(ProjectDir)/ThirdParty;$(ProjectDir)/OpenGL/Core/Textures;$(ProjectDir)/OpenGL/Core/Buffers;$(ProjectDir)/OpenGL/Core/Program;$(ProjectDir)/Foundation;$(ProjectDir)/Math;$(ProjectDir)/filesystem;$(ProjectDir)/Scene;$(ProjectDir)/ResourceManagement;$(ProjectDir)/Effects;$(ProjectDir)/ThirdParty/stb</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>$(ProjectDir)/ThirdParty/glfw/lib</AdditionalLibraryDirectories>
+      <AdditionalDependencies>opengl32.lib;glfw3.lib;glfw3dll.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <PostBuildEvent>
+      <Command>xcopy "$(ProjectDir)Resources" "$(OutDir)" /Y /I /E</Command>
+    </PostBuildEvent>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions);GLFW_STATIC</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>$(ProjectDir)/ThirdParty/glad/include;$(ProjectDir)/OpenGL/Core;$(ProjectDir)/ThirdParty/glfw/include;$(ProjectDir)/ThirdParty;$(ProjectDir)/OpenGL/Core/Textures;$(ProjectDir)/OpenGL/Core/Buffers;$(ProjectDir)/OpenGL/Core/Program;$(ProjectDir)/Foundation;$(ProjectDir)/Math;$(ProjectDir)/filesystem;$(ProjectDir)/Scene;$(ProjectDir)/ResourceManagement;$(ProjectDir)/Effects;$(ProjectDir)/ThirdParty/stb</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>$(ProjectDir)/ThirdParty/glfw/lib</AdditionalLibraryDirectories>
+      <AdditionalDependencies>opengl32.lib;glfw3.lib;glfw3dll.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <PostBuildEvent>
+      <Command>xcopy "$(ProjectDir)Resources" "$(OutDir)" /Y /I /E</Command>
+    </PostBuildEvent>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="Effects\GaussianBlur\GaussianBlurEffect.hpp" />
+    <ClInclude Include="Effects\GaussianBlur\GaussianBlurSettings.hpp" />
+    <ClInclude Include="Foundation\BitwiseEnum.hpp" />
+    <ClInclude Include="Foundation\Color.hpp" />
+    <ClInclude Include="Foundation\CRC32.hpp" />
+    <ClInclude Include="Foundation\Drawable.hpp" />
+    <ClInclude Include="Foundation\GaussianFunction.hpp" />
+    <ClInclude Include="Foundation\MemoryUtils.hpp" />
+    <ClInclude Include="Foundation\StringUtils.hpp" />
+    <ClInclude Include="Math\AxisAlignedBox3D.hpp" />
+    <ClInclude Include="Math\Rect2D.hpp" />
+    <ClInclude Include="Math\Size2D.hpp" />
+    <ClInclude Include="Math\Triangle.hpp" />
+    <ClInclude Include="Math\Triangle3D.hpp" />
+    <ClInclude Include="Math\Vertices\Vertex1P1N2UV.hpp" />
+    <ClInclude Include="Math\Vertices\Vertex1P1N2UV1T1BT.hpp" />
+    <ClInclude Include="OpenGL\Core\Buffers\GLBuffer.hpp" />
+    <ClInclude Include="OpenGL\Core\Buffers\GLElementArrayBuffer.hpp" />
+    <ClInclude Include="OpenGL\Core\Buffers\GLFramebuffer.hpp" />
+    <ClInclude Include="OpenGL\Core\Buffers\GLTextureBuffer.hpp" />
+    <ClInclude Include="OpenGL\Core\Buffers\GLVertexArray.hpp" />
+    <ClInclude Include="OpenGL\Core\Buffers\GLVertexArrayBuffer.hpp" />
+    <ClInclude Include="OpenGL\Core\Buffers\GLVertexAttribute.hpp" />
+    <ClInclude Include="OpenGL\Core\GLNamedObject.hpp" />
+    <ClInclude Include="OpenGL\Core\GLTextureUnitManager.hpp" />
+    <ClInclude Include="OpenGL\Core\GLViewport.hpp" />
+    <ClInclude Include="OpenGL\Core\Program\GLProgram.hpp" />
+    <ClInclude Include="OpenGL\Core\Program\GLShader.hpp" />
+    <ClInclude Include="OpenGL\Core\Program\GLUniform.hpp" />
+    <ClInclude Include="OpenGL\Core\Program\GLUniformBlock.hpp" />
+    <ClInclude Include="OpenGL\Core\Textures\GLSampler.hpp" />
+    <ClInclude Include="OpenGL\Core\Textures\GLTexture.hpp" />
+    <ClInclude Include="OpenGL\Core\Textures\GLTexture2D.hpp" />
+    <ClInclude Include="OpenGL\Core\Textures\GLTextureFactory.hpp" />
+    <ClInclude Include="OpenGL\Core\Textures\GLTextureFormat.hpp" />
+    <ClInclude Include="OpenGL\Core\Textures\Sampling.hpp" />
+    <ClInclude Include="Renderer.hpp" />
+    <ClInclude Include="ResourceManagement\WavefrontMeshLoader.hpp" />
+    <ClInclude Include="Scene\Camera.hpp" />
+    <ClInclude Include="Scene\DirectionalLight.hpp" />
+    <ClInclude Include="Scene\Light.hpp" />
+    <ClInclude Include="Scene\Mesh.hpp" />
+    <ClInclude Include="Scene\Transformation.hpp" />
+    <ClInclude Include="ThirdParty\filesystem\fwd.h" />
+    <ClInclude Include="ThirdParty\filesystem\path.h" />
+    <ClInclude Include="ThirdParty\filesystem\resolver.h" />
+    <ClInclude Include="ThirdParty\glad\include\glad\glad.h" />
+    <ClInclude Include="ThirdParty\glad\include\KHR\khrplatform.h" />
+    <ClInclude Include="ThirdParty\glfw\include\glfw3.h" />
+    <ClInclude Include="ThirdParty\glfw\include\glfw3native.h" />
+    <ClInclude Include="ThirdParty\glm\common.hpp" />
+    <ClInclude Include="ThirdParty\glm\detail\func_common.hpp" />
+    <ClInclude Include="ThirdParty\glm\detail\func_exponential.hpp" />
+    <ClInclude Include="ThirdParty\glm\detail\func_geometric.hpp" />
+    <ClInclude Include="ThirdParty\glm\detail\func_integer.hpp" />
+    <ClInclude Include="ThirdParty\glm\detail\func_matrix.hpp" />
+    <ClInclude Include="ThirdParty\glm\detail\func_packing.hpp" />
+    <ClInclude Include="ThirdParty\glm\detail\func_trigonometric.hpp" />
+    <ClInclude Include="ThirdParty\glm\detail\func_vector_relational.hpp" />
+    <ClInclude Include="ThirdParty\glm\detail\precision.hpp" />
+    <ClInclude Include="ThirdParty\glm\detail\setup.hpp" />
+    <ClInclude Include="ThirdParty\glm\detail\type_float.hpp" />
+    <ClInclude Include="ThirdParty\glm\detail\type_gentype.hpp" />
+    <ClInclude Include="ThirdParty\glm\detail\type_half.hpp" />
+    <ClInclude Include="ThirdParty\glm\detail\type_int.hpp" />
+    <ClInclude Include="ThirdParty\glm\detail\type_mat.hpp" />
+    <ClInclude Include="ThirdParty\glm\detail\type_mat2x2.hpp" />
+    <ClInclude Include="ThirdParty\glm\detail\type_mat2x3.hpp" />
+    <ClInclude Include="ThirdParty\glm\detail\type_mat2x4.hpp" />
+    <ClInclude Include="ThirdParty\glm\detail\type_mat3x2.hpp" />
+    <ClInclude Include="ThirdParty\glm\detail\type_mat3x3.hpp" />
+    <ClInclude Include="ThirdParty\glm\detail\type_mat3x4.hpp" />
+    <ClInclude Include="ThirdParty\glm\detail\type_mat4x2.hpp" />
+    <ClInclude Include="ThirdParty\glm\detail\type_mat4x3.hpp" />
+    <ClInclude Include="ThirdParty\glm\detail\type_mat4x4.hpp" />
+    <ClInclude Include="ThirdParty\glm\detail\type_vec.hpp" />
+    <ClInclude Include="ThirdParty\glm\detail\type_vec1.hpp" />
+    <ClInclude Include="ThirdParty\glm\detail\type_vec2.hpp" />
+    <ClInclude Include="ThirdParty\glm\detail\type_vec3.hpp" />
+    <ClInclude Include="ThirdParty\glm\detail\type_vec4.hpp" />
+    <ClInclude Include="ThirdParty\glm\detail\_features.hpp" />
+    <ClInclude Include="ThirdParty\glm\detail\_fixes.hpp" />
+    <ClInclude Include="ThirdParty\glm\detail\_noise.hpp" />
+    <ClInclude Include="ThirdParty\glm\detail\_swizzle.hpp" />
+    <ClInclude Include="ThirdParty\glm\detail\_swizzle_func.hpp" />
+    <ClInclude Include="ThirdParty\glm\detail\_vectorize.hpp" />
+    <ClInclude Include="ThirdParty\glm\exponential.hpp" />
+    <ClInclude Include="ThirdParty\glm\ext.hpp" />
+    <ClInclude Include="ThirdParty\glm\fwd.hpp" />
+    <ClInclude Include="ThirdParty\glm\geometric.hpp" />
+    <ClInclude Include="ThirdParty\glm\glm.hpp" />
+    <ClInclude Include="ThirdParty\glm\gtc\bitfield.hpp" />
+    <ClInclude Include="ThirdParty\glm\gtc\color_space.hpp" />
+    <ClInclude Include="ThirdParty\glm\gtc\constants.hpp" />
+    <ClInclude Include="ThirdParty\glm\gtc\epsilon.hpp" />
+    <ClInclude Include="ThirdParty\glm\gtc\functions.hpp" />
+    <ClInclude Include="ThirdParty\glm\gtc\integer.hpp" />
+    <ClInclude Include="ThirdParty\glm\gtc\matrix_access.hpp" />
+    <ClInclude Include="ThirdParty\glm\gtc\matrix_integer.hpp" />
+    <ClInclude Include="ThirdParty\glm\gtc\matrix_inverse.hpp" />
+    <ClInclude Include="ThirdParty\glm\gtc\matrix_transform.hpp" />
+    <ClInclude Include="ThirdParty\glm\gtc\noise.hpp" />
+    <ClInclude Include="ThirdParty\glm\gtc\packing.hpp" />
+    <ClInclude Include="ThirdParty\glm\gtc\quaternion.hpp" />
+    <ClInclude Include="ThirdParty\glm\gtc\random.hpp" />
+    <ClInclude Include="ThirdParty\glm\gtc\reciprocal.hpp" />
+    <ClInclude Include="ThirdParty\glm\gtc\round.hpp" />
+    <ClInclude Include="ThirdParty\glm\gtc\type_aligned.hpp" />
+    <ClInclude Include="ThirdParty\glm\gtc\type_precision.hpp" />
+    <ClInclude Include="ThirdParty\glm\gtc\type_ptr.hpp" />
+    <ClInclude Include="ThirdParty\glm\gtc\ulp.hpp" />
+    <ClInclude Include="ThirdParty\glm\gtc\vec1.hpp" />
+    <ClInclude Include="ThirdParty\glm\gtx\associated_min_max.hpp" />
+    <ClInclude Include="ThirdParty\glm\gtx\bit.hpp" />
+    <ClInclude Include="ThirdParty\glm\gtx\closest_point.hpp" />
+    <ClInclude Include="ThirdParty\glm\gtx\color_space.hpp" />
+    <ClInclude Include="ThirdParty\glm\gtx\color_space_YCoCg.hpp" />
+    <ClInclude Include="ThirdParty\glm\gtx\common.hpp" />
+    <ClInclude Include="ThirdParty\glm\gtx\compatibility.hpp" />
+    <ClInclude Include="ThirdParty\glm\gtx\component_wise.hpp" />
+    <ClInclude Include="ThirdParty\glm\gtx\dual_quaternion.hpp" />
+    <ClInclude Include="ThirdParty\glm\gtx\euler_angles.hpp" />
+    <ClInclude Include="ThirdParty\glm\gtx\extend.hpp" />
+    <ClInclude Include="ThirdParty\glm\gtx\extended_min_max.hpp" />
+    <ClInclude Include="ThirdParty\glm\gtx\fast_exponential.hpp" />
+    <ClInclude Include="ThirdParty\glm\gtx\fast_square_root.hpp" />
+    <ClInclude Include="ThirdParty\glm\gtx\fast_trigonometry.hpp" />
+    <ClInclude Include="ThirdParty\glm\gtx\gradient_paint.hpp" />
+    <ClInclude Include="ThirdParty\glm\gtx\handed_coordinate_space.hpp" />
+    <ClInclude Include="ThirdParty\glm\gtx\hash.hpp" />
+    <ClInclude Include="ThirdParty\glm\gtx\integer.hpp" />
+    <ClInclude Include="ThirdParty\glm\gtx\intersect.hpp" />
+    <ClInclude Include="ThirdParty\glm\gtx\io.hpp" />
+    <ClInclude Include="ThirdParty\glm\gtx\log_base.hpp" />
+    <ClInclude Include="ThirdParty\glm\gtx\matrix_cross_product.hpp" />
+    <ClInclude Include="ThirdParty\glm\gtx\matrix_decompose.hpp" />
+    <ClInclude Include="ThirdParty\glm\gtx\matrix_interpolation.hpp" />
+    <ClInclude Include="ThirdParty\glm\gtx\matrix_major_storage.hpp" />
+    <ClInclude Include="ThirdParty\glm\gtx\matrix_operation.hpp" />
+    <ClInclude Include="ThirdParty\glm\gtx\matrix_query.hpp" />
+    <ClInclude Include="ThirdParty\glm\gtx\matrix_transform_2d.hpp" />
+    <ClInclude Include="ThirdParty\glm\gtx\mixed_product.hpp" />
+    <ClInclude Include="ThirdParty\glm\gtx\norm.hpp" />
+    <ClInclude Include="ThirdParty\glm\gtx\normal.hpp" />
+    <ClInclude Include="ThirdParty\glm\gtx\normalize_dot.hpp" />
+    <ClInclude Include="ThirdParty\glm\gtx\number_precision.hpp" />
+    <ClInclude Include="ThirdParty\glm\gtx\optimum_pow.hpp" />
+    <ClInclude Include="ThirdParty\glm\gtx\orthonormalize.hpp" />
+    <ClInclude Include="ThirdParty\glm\gtx\perpendicular.hpp" />
+    <ClInclude Include="ThirdParty\glm\gtx\polar_coordinates.hpp" />
+    <ClInclude Include="ThirdParty\glm\gtx\projection.hpp" />
+    <ClInclude Include="ThirdParty\glm\gtx\quaternion.hpp" />
+    <ClInclude Include="ThirdParty\glm\gtx\range.hpp" />
+    <ClInclude Include="ThirdParty\glm\gtx\raw_data.hpp" />
+    <ClInclude Include="ThirdParty\glm\gtx\rotate_normalized_axis.hpp" />
+    <ClInclude Include="ThirdParty\glm\gtx\rotate_vector.hpp" />
+    <ClInclude Include="ThirdParty\glm\gtx\scalar_multiplication.hpp" />
+    <ClInclude Include="ThirdParty\glm\gtx\scalar_relational.hpp" />
+    <ClInclude Include="ThirdParty\glm\gtx\simd_mat4.hpp" />
+    <ClInclude Include="ThirdParty\glm\gtx\simd_quat.hpp" />
+    <ClInclude Include="ThirdParty\glm\gtx\simd_vec4.hpp" />
+    <ClInclude Include="ThirdParty\glm\gtx\spline.hpp" />
+    <ClInclude Include="ThirdParty\glm\gtx\std_based_type.hpp" />
+    <ClInclude Include="ThirdParty\glm\gtx\string_cast.hpp" />
+    <ClInclude Include="ThirdParty\glm\gtx\transform.hpp" />
+    <ClInclude Include="ThirdParty\glm\gtx\transform2.hpp" />
+    <ClInclude Include="ThirdParty\glm\gtx\type_aligned.hpp" />
+    <ClInclude Include="ThirdParty\glm\gtx\type_trait.hpp" />
+    <ClInclude Include="ThirdParty\glm\gtx\vector_angle.hpp" />
+    <ClInclude Include="ThirdParty\glm\gtx\vector_query.hpp" />
+    <ClInclude Include="ThirdParty\glm\gtx\wrap.hpp" />
+    <ClInclude Include="ThirdParty\glm\integer.hpp" />
+    <ClInclude Include="ThirdParty\glm\mat2x2.hpp" />
+    <ClInclude Include="ThirdParty\glm\mat2x3.hpp" />
+    <ClInclude Include="ThirdParty\glm\mat2x4.hpp" />
+    <ClInclude Include="ThirdParty\glm\mat3x2.hpp" />
+    <ClInclude Include="ThirdParty\glm\mat3x3.hpp" />
+    <ClInclude Include="ThirdParty\glm\mat3x4.hpp" />
+    <ClInclude Include="ThirdParty\glm\mat4x2.hpp" />
+    <ClInclude Include="ThirdParty\glm\mat4x3.hpp" />
+    <ClInclude Include="ThirdParty\glm\mat4x4.hpp" />
+    <ClInclude Include="ThirdParty\glm\matrix.hpp" />
+    <ClInclude Include="ThirdParty\glm\packing.hpp" />
+    <ClInclude Include="ThirdParty\glm\simd\common.h" />
+    <ClInclude Include="ThirdParty\glm\simd\exponential.h" />
+    <ClInclude Include="ThirdParty\glm\simd\geometric.h" />
+    <ClInclude Include="ThirdParty\glm\simd\integer.h" />
+    <ClInclude Include="ThirdParty\glm\simd\matrix.h" />
+    <ClInclude Include="ThirdParty\glm\simd\packing.h" />
+    <ClInclude Include="ThirdParty\glm\simd\platform.h" />
+    <ClInclude Include="ThirdParty\glm\simd\trigonometric.h" />
+    <ClInclude Include="ThirdParty\glm\simd\vector_relational.h" />
+    <ClInclude Include="ThirdParty\glm\trigonometric.hpp" />
+    <ClInclude Include="ThirdParty\glm\vec2.hpp" />
+    <ClInclude Include="ThirdParty\glm\vec3.hpp" />
+    <ClInclude Include="ThirdParty\glm\vec4.hpp" />
+    <ClInclude Include="ThirdParty\glm\vector_relational.hpp" />
+    <ClInclude Include="ThirdParty\obj_loader\ltalloc.h" />
+    <ClInclude Include="ThirdParty\obj_loader\ltalloc.hpp" />
+    <ClInclude Include="ThirdParty\obj_loader\tiny_obj_loader.h" />
+    <ClInclude Include="ThirdParty\stb\stb_image.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Effects\GaussianBlur\GaussianBlurEffect.cpp" />
+    <ClCompile Include="Foundation\Color.cpp" />
+    <ClCompile Include="Foundation\CRC32.cpp" />
+    <ClCompile Include="Foundation\Drawable.cpp" />
+    <ClCompile Include="Foundation\GaussianFunction.cpp" />
+    <ClCompile Include="Foundation\MemoryUtils.cpp" />
+    <ClCompile Include="Math\AxisAlignedBox3D.cpp" />
+    <ClCompile Include="Math\Rect2D.cpp" />
+    <ClCompile Include="Math\Size2D.cpp" />
+    <ClCompile Include="Math\Triangle3D.cpp" />
+    <ClCompile Include="Math\Vertices\Vertex1P1N2UV.cpp" />
+    <ClCompile Include="Math\Vertices\Vertex1P1N2UV1T1BT.cpp" />
+    <ClCompile Include="OpenGL\Core\Buffers\GLFramebuffer.cpp" />
+    <ClCompile Include="OpenGL\Core\Buffers\GLVertexAttribute.cpp" />
+    <ClCompile Include="OpenGL\Core\GLNamedObject.cpp" />
+    <ClCompile Include="OpenGL\Core\GLTextureUnitManager.cpp" />
+    <ClCompile Include="OpenGL\Core\GLViewport.cpp" />
+    <ClCompile Include="OpenGL\Core\Program\GLProgram.cpp" />
+    <ClCompile Include="OpenGL\Core\Program\GLShader.cpp" />
+    <ClCompile Include="OpenGL\Core\Program\GLUniform.cpp" />
+    <ClCompile Include="OpenGL\Core\Textures\GLSampler.cpp" />
+    <ClCompile Include="OpenGL\Core\Textures\GLTexture.cpp" />
+    <ClCompile Include="OpenGL\Core\Textures\GLTextureFactory.cpp" />
+    <ClCompile Include="Renderer.cpp" />
+    <ClCompile Include="ResourceManagement\WavefrontMeshLoader.cpp" />
+    <ClCompile Include="Scene\Camera.cpp" />
+    <ClCompile Include="Scene\DirectionalLight.cpp" />
+    <ClCompile Include="Scene\Light.cpp" />
+    <ClCompile Include="Scene\Mesh.cpp" />
+    <ClCompile Include="Scene\Transformation.cpp" />
+    <ClCompile Include="ThirdParty\glad\src\glad.c" />
+    <ClCompile Include="ThirdParty\glm\detail\dummy.cpp" />
+    <ClCompile Include="ThirdParty\glm\detail\glm.cpp" />
+    <ClCompile Include="ThirdParty\obj_loader\ltalloc.cc" />
+    <ClCompile Include="ThirdParty\obj_loader\tiny_obj_loader.cpp" />
+    <ClCompile Include="UbiBlur.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="Resources\Shaders\Constants.glsl">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
+    </CustomBuild>
+    <CustomBuild Include="Resources\Shaders\CookTorrance.glsl">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
+    </CustomBuild>
+    <CustomBuild Include="Resources\Shaders\FullScreenQuad.frag">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
+    </CustomBuild>
+    <CustomBuild Include="Resources\Shaders\FullScreenQuad.vert">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
+    </CustomBuild>
+    <CustomBuild Include="Resources\Shaders\Lights.glsl">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
+    </CustomBuild>
+    <CustomBuild Include="Resources\Shaders\Mesh.frag">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </DeploymentContent>
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </DeploymentContent>
+    </CustomBuild>
+    <CustomBuild Include="Resources\Shaders\Mesh.vert">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
+    </CustomBuild>
+    <CustomBuild Include="Resources\Shaders\GaussianBlur.frag">
+      <FileType>Document</FileType>
+    </CustomBuild>
+    <CustomBuild Include="Resources\Shaders\BlinnPhong.glsl">
+      <FileType>Document</FileType>
+    </CustomBuild>
+    <CustomBuild Include="Resources\Shaders\BackgroundPattern.frag">
+      <FileType>Document</FileType>
+    </CustomBuild>
+    <None Include="Resources\Shaders\GaussianBlur.vert" />
+    <None Include="ThirdParty\glm\detail\func_common.inl" />
+    <None Include="ThirdParty\glm\detail\func_common_simd.inl" />
+    <None Include="ThirdParty\glm\detail\func_exponential.inl" />
+    <None Include="ThirdParty\glm\detail\func_exponential_simd.inl" />
+    <None Include="ThirdParty\glm\detail\func_geometric.inl" />
+    <None Include="ThirdParty\glm\detail\func_geometric_simd.inl" />
+    <None Include="ThirdParty\glm\detail\func_integer.inl" />
+    <None Include="ThirdParty\glm\detail\func_integer_simd.inl" />
+    <None Include="ThirdParty\glm\detail\func_matrix.inl" />
+    <None Include="ThirdParty\glm\detail\func_matrix_simd.inl" />
+    <None Include="ThirdParty\glm\detail\func_packing.inl" />
+    <None Include="ThirdParty\glm\detail\func_packing_simd.inl" />
+    <None Include="ThirdParty\glm\detail\func_trigonometric.inl" />
+    <None Include="ThirdParty\glm\detail\func_trigonometric_simd.inl" />
+    <None Include="ThirdParty\glm\detail\func_vector_relational.inl" />
+    <None Include="ThirdParty\glm\detail\func_vector_relational_simd.inl" />
+    <None Include="ThirdParty\glm\detail\type_gentype.inl" />
+    <None Include="ThirdParty\glm\detail\type_half.inl" />
+    <None Include="ThirdParty\glm\detail\type_mat.inl" />
+    <None Include="ThirdParty\glm\detail\type_mat2x2.inl" />
+    <None Include="ThirdParty\glm\detail\type_mat2x3.inl" />
+    <None Include="ThirdParty\glm\detail\type_mat2x4.inl" />
+    <None Include="ThirdParty\glm\detail\type_mat3x2.inl" />
+    <None Include="ThirdParty\glm\detail\type_mat3x3.inl" />
+    <None Include="ThirdParty\glm\detail\type_mat3x4.inl" />
+    <None Include="ThirdParty\glm\detail\type_mat4x2.inl" />
+    <None Include="ThirdParty\glm\detail\type_mat4x3.inl" />
+    <None Include="ThirdParty\glm\detail\type_mat4x4.inl" />
+    <None Include="ThirdParty\glm\detail\type_mat4x4_simd.inl" />
+    <None Include="ThirdParty\glm\detail\type_vec.inl" />
+    <None Include="ThirdParty\glm\detail\type_vec1.inl" />
+    <None Include="ThirdParty\glm\detail\type_vec2.inl" />
+    <None Include="ThirdParty\glm\detail\type_vec3.inl" />
+    <None Include="ThirdParty\glm\detail\type_vec4.inl" />
+    <None Include="ThirdParty\glm\detail\type_vec4_simd.inl" />
+    <None Include="ThirdParty\glm\gtc\bitfield.inl" />
+    <None Include="ThirdParty\glm\gtc\color_encoding.inl" />
+    <None Include="ThirdParty\glm\gtc\color_space.inl" />
+    <None Include="ThirdParty\glm\gtc\constants.inl" />
+    <None Include="ThirdParty\glm\gtc\epsilon.inl" />
+    <None Include="ThirdParty\glm\gtc\functions.inl" />
+    <None Include="ThirdParty\glm\gtc\integer.inl" />
+    <None Include="ThirdParty\glm\gtc\matrix_access.inl" />
+    <None Include="ThirdParty\glm\gtc\matrix_inverse.inl" />
+    <None Include="ThirdParty\glm\gtc\matrix_transform.inl" />
+    <None Include="ThirdParty\glm\gtc\noise.inl" />
+    <None Include="ThirdParty\glm\gtc\packing.inl" />
+    <None Include="ThirdParty\glm\gtc\quaternion.inl" />
+    <None Include="ThirdParty\glm\gtc\quaternion_simd.inl" />
+    <None Include="ThirdParty\glm\gtc\random.inl" />
+    <None Include="ThirdParty\glm\gtc\reciprocal.inl" />
+    <None Include="ThirdParty\glm\gtc\round.inl" />
+    <None Include="ThirdParty\glm\gtc\type_precision.inl" />
+    <None Include="ThirdParty\glm\gtc\type_ptr.inl" />
+    <None Include="ThirdParty\glm\gtc\ulp.inl" />
+    <None Include="ThirdParty\glm\gtc\vec1.inl" />
+    <None Include="ThirdParty\glm\gtx\associated_min_max.inl" />
+    <None Include="ThirdParty\glm\gtx\bit.inl" />
+    <None Include="ThirdParty\glm\gtx\closest_point.inl" />
+    <None Include="ThirdParty\glm\gtx\color_space.inl" />
+    <None Include="ThirdParty\glm\gtx\color_space_YCoCg.inl" />
+    <None Include="ThirdParty\glm\gtx\common.inl" />
+    <None Include="ThirdParty\glm\gtx\compatibility.inl" />
+    <None Include="ThirdParty\glm\gtx\component_wise.inl" />
+    <None Include="ThirdParty\glm\gtx\dual_quaternion.inl" />
+    <None Include="ThirdParty\glm\gtx\euler_angles.inl" />
+    <None Include="ThirdParty\glm\gtx\extend.inl" />
+    <None Include="ThirdParty\glm\gtx\extended_min_max.inl" />
+    <None Include="ThirdParty\glm\gtx\fast_exponential.inl" />
+    <None Include="ThirdParty\glm\gtx\fast_square_root.inl" />
+    <None Include="ThirdParty\glm\gtx\fast_trigonometry.inl" />
+    <None Include="ThirdParty\glm\gtx\float_notmalize.inl" />
+    <None Include="ThirdParty\glm\gtx\gradient_paint.inl" />
+    <None Include="ThirdParty\glm\gtx\handed_coordinate_space.inl" />
+    <None Include="ThirdParty\glm\gtx\hash.inl" />
+    <None Include="ThirdParty\glm\gtx\integer.inl" />
+    <None Include="ThirdParty\glm\gtx\intersect.inl" />
+    <None Include="ThirdParty\glm\gtx\io.inl" />
+    <None Include="ThirdParty\glm\gtx\log_base.inl" />
+    <None Include="ThirdParty\glm\gtx\matrix_cross_product.inl" />
+    <None Include="ThirdParty\glm\gtx\matrix_decompose.inl" />
+    <None Include="ThirdParty\glm\gtx\matrix_interpolation.inl" />
+    <None Include="ThirdParty\glm\gtx\matrix_major_storage.inl" />
+    <None Include="ThirdParty\glm\gtx\matrix_operation.inl" />
+    <None Include="ThirdParty\glm\gtx\matrix_query.inl" />
+    <None Include="ThirdParty\glm\gtx\matrix_transform_2d.inl" />
+    <None Include="ThirdParty\glm\gtx\mixed_product.inl" />
+    <None Include="ThirdParty\glm\gtx\norm.inl" />
+    <None Include="ThirdParty\glm\gtx\normal.inl" />
+    <None Include="ThirdParty\glm\gtx\normalize_dot.inl" />
+    <None Include="ThirdParty\glm\gtx\number_precision.inl" />
+    <None Include="ThirdParty\glm\gtx\optimum_pow.inl" />
+    <None Include="ThirdParty\glm\gtx\orthonormalize.inl" />
+    <None Include="ThirdParty\glm\gtx\perpendicular.inl" />
+    <None Include="ThirdParty\glm\gtx\polar_coordinates.inl" />
+    <None Include="ThirdParty\glm\gtx\projection.inl" />
+    <None Include="ThirdParty\glm\gtx\quaternion.inl" />
+    <None Include="ThirdParty\glm\gtx\raw_data.inl" />
+    <None Include="ThirdParty\glm\gtx\rotate_normalized_axis.inl" />
+    <None Include="ThirdParty\glm\gtx\rotate_vector.inl" />
+    <None Include="ThirdParty\glm\gtx\scalar_relational.inl" />
+    <None Include="ThirdParty\glm\gtx\simd_mat4.inl" />
+    <None Include="ThirdParty\glm\gtx\simd_quat.inl" />
+    <None Include="ThirdParty\glm\gtx\simd_vec4.inl" />
+    <None Include="ThirdParty\glm\gtx\spline.inl" />
+    <None Include="ThirdParty\glm\gtx\std_based_type.inl" />
+    <None Include="ThirdParty\glm\gtx\string_cast.inl" />
+    <None Include="ThirdParty\glm\gtx\transform.inl" />
+    <None Include="ThirdParty\glm\gtx\transform2.inl" />
+    <None Include="ThirdParty\glm\gtx\type_aligned.inl" />
+    <None Include="ThirdParty\glm\gtx\type_trait.inl" />
+    <None Include="ThirdParty\glm\gtx\vector_angle.inl" />
+    <None Include="ThirdParty\glm\gtx\vector_query.inl" />
+    <None Include="ThirdParty\glm\gtx\wrap.inl" />
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="ThirdParty\glfw\lib\glfw3.lib" />
+    <Library Include="ThirdParty\glfw\lib\glfw3dll.lib" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Resources\Textures\albedo.png" />
+    <Image Include="Resources\Textures\normal.png" />
+    <Image Include="Resources\Textures\roughness.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="Resources\Models\Teapot.obj">
+      <FileType>Document</FileType>
+    </Media>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
