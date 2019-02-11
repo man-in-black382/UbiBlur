@@ -4,7 +4,7 @@
 #include <iostream>
 #include <glad/glad.h>
 #include <glfw3.h>
-#include <Renderer.hpp>
+#include "Renderer.hpp"
 
 static void error_callback(int error, const char* description) {
 	fprintf(stderr, "Error: %s\n", description);
