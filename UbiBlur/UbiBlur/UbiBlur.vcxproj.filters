@@ -570,12 +570,6 @@
     <ClInclude Include="Scene\Camera.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Scene\DirectionalLight.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Scene\Light.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Scene\Transformation.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -616,6 +610,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ThirdParty\stb\stb_image.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="OpenGL\Core\Buffers\GLRenderbuffer.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="OpenGL\Core\Buffers\GLDepthStencilRenderbuffer.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -698,12 +698,6 @@
     <ClCompile Include="Scene\Camera.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Scene\DirectionalLight.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Scene\Light.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Scene\Transformation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -726,6 +720,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Effects\GaussianBlur\GaussianBlurEffect.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="OpenGL\Core\Buffers\GLRenderbuffer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="OpenGL\Core\Buffers\GLDepthStencilRenderbuffer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -1072,7 +1072,8 @@
     <None Include="ThirdParty\glm\gtx\wrap.inl">
       <Filter>Header Files</Filter>
     </None>
-    <None Include="Resources\Shaders\GaussianBlur.vert" />
+    <None Include="Resources\Shaders\Empty.frag" />
+    <None Include="Resources\Shaders\HalfScreenQuad.vert" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="ThirdParty\glfw\lib\glfw3.lib" />

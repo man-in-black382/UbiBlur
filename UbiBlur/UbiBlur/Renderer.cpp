@@ -9,7 +9,7 @@ namespace Engine {
 		: mCamera(90.0, 10.0, 200.0),
 		mFramebuffer(rtSize),
 		mRenderTarget(rtSize),
-		mDepthBuffer(rtSize),
+		mDepthStencilRenderbuffer(rtSize),
 		mMeshShader(resourceRoot.str() + "\\Shaders\\Mesh.vert", resourceRoot.str() + "\\Shaders\\Mesh.frag", ""),
 		mRTOutputShader(resourceRoot.str() + "\\Shaders\\FullScreenQuad.vert", resourceRoot.str() + "\\Shaders\\FullScreenQuad.frag", ""),
 		mBackgroundPatternShader(resourceRoot.str() + "\\Shaders\\FullScreenQuad.vert", resourceRoot.str() + "\\Shaders\\BackgroundPattern.frag", ""),
@@ -19,7 +19,7 @@ namespace Engine {
 		mRoughnessMap(GLTextureFactory::LoadLDRImage<GLTexture::Normalized::RCompressedRGBAInput>(resourceRoot.str() + "\\Textures\\roughness.png")),
 		mBlurEffect(resourceRoot, rtSize) {
 		 
-		mFramebuffer.attachDepthTexture(mDepthBuffer); 
+		mFramebuffer.attachRenderbuffer(mDepthStencilRenderbuffer);
 		mFramebuffer.attachTexture(mRenderTarget);
 
 		mCamera.setViewportAspectRatio(mFramebuffer.size().width / mFramebuffer.size().height);
@@ -119,7 +119,8 @@ namespace Engine {
 		renderMesh();
 
 		if (mBlurEnabled) {
-			mBlurEffect.blur(mRenderTarget, mFramebuffer, { 30, 15 });
+			mBlurEffect.blurWithVertexMask(mRenderTarget, mFramebuffer, { 30, 15 });
+			//mBlurEffect.blurWithStencilMask(mRenderTarget, mFramebuffer, { 30, 15 });
 		}
 
 		renderFinalImage();

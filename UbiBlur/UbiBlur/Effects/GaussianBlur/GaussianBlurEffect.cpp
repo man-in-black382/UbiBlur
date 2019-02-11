@@ -16,10 +16,14 @@
 namespace Engine {
 
 	GaussianBlurEffect::GaussianBlurEffect(const filesystem::path &resourceRoot, const Size2D &rtSize)
-		: mBlurShader(resourceRoot.str() + "\\Shaders\\GaussianBlur.vert", resourceRoot.str() + "\\Shaders\\GaussianBlur.frag", ""),
+		: mHalfBlurShader(resourceRoot.str() + "\\Shaders\\HalfScreenQuad.vert", resourceRoot.str() + "\\Shaders\\GaussianBlur.frag", ""),
+		mFullBlurShader(resourceRoot.str() + "\\Shaders\\FullScreenQuad.vert", resourceRoot.str() + "\\Shaders\\GaussianBlur.frag", ""),
+		mHalfQuadShader(resourceRoot.str() + "\\Shaders\\HalfScreenQuad.vert", resourceRoot.str() + "\\Shaders\\Empty.frag", ""),
 		mFramebuffer(rtSize),
+		mDepthStencilRenderbuffer(rtSize),
 		mIntermediateImage(rtSize) {
 	
+		mFramebuffer.attachRenderbuffer(mDepthStencilRenderbuffer);
 		mFramebuffer.attachTexture(mIntermediateImage);
 	}
 
@@ -57,39 +61,80 @@ namespace Engine {
         }
     }
 
+	void GaussianBlurEffect::produceStencilMask(GLFramebuffer &fbo) {
+		fbo.clear(GLFramebuffer::UnderlyingBuffer::Stencil);
+		glStencilFunc(GL_ALWAYS, 1, 1);
+		glStencilOp(GL_KEEP, GL_KEEP, GL_REPLACE);
+		mHalfQuadShader.bind();
+		Drawable::TriangleStripQuad::Draw();
+	}
+
 	void GaussianBlurEffect::blur(
-		const GLNormalizedTexture2D<GLTexture::Normalized::RGBA> &image,
-		const GLFramebuffer &framebuffer,
+		GLNormalizedTexture2D<GLTexture::Normalized::RGBA> &image,
+		GLFramebuffer &framebuffer,
+		GLProgram &blurShader,
 		const GaussianBlurSettings &settings
-	) 
+	)
 	{
 		if (settings.radius == 0) throw std::invalid_argument("Blur radius must be greater than 0");
 
 		computeWeightsAndOffsetsIfNeeded(settings);
 
-		mBlurShader.bind();
-		mBlurShader.setUniformVector(ctcrc32("uRenderTargetSize"), glm::vec2(image.size().width, image.size().height));
-		mBlurShader.setUniformFloatArray(ctcrc32("uKernelWeights[0]"), mWeights.data(), mWeights.size());
-		mBlurShader.setUniformFloatArray(ctcrc32("uTextureOffsets[0]"), mTextureOffsets.data(), mTextureOffsets.size());
-		mBlurShader.setUniformInteger(ctcrc32("uKernelSize"), mTextureOffsets.size());
+		blurShader.bind();
+		blurShader.setUniformVector(ctcrc32("uRenderTargetSize"), glm::vec2(image.size().width, image.size().height));
+		blurShader.setUniformFloatArray(ctcrc32("uKernelWeights[0]"), mWeights.data(), mWeights.size());
+		blurShader.setUniformFloatArray(ctcrc32("uTextureOffsets[0]"), mTextureOffsets.data(), mTextureOffsets.size());
+		blurShader.setUniformInteger(ctcrc32("uKernelSize"), mTextureOffsets.size());
 
 		// Set horizontal direction
-		mBlurShader.setUniformVector(ctcrc32("uBlurDirection"), glm::vec2(1.0, 0.0));
-		mBlurShader.ensureSamplerValidity([&]() {
-			mBlurShader.setUniformTexture(ctcrc32("uTexture"), image);
+		blurShader.setUniformVector(ctcrc32("uBlurDirection"), glm::vec2(1.0, 0.0));
+		blurShader.ensureSamplerValidity([&]() {
+			blurShader.setUniformTexture(ctcrc32("uTexture"), image);
 		});
 
 		mFramebuffer.bind();
 		Drawable::TriangleStripQuad::Draw();
 
 		// Set vertical direction
-		mBlurShader.setUniformVector(ctcrc32("uBlurDirection"), glm::vec2(0.0, 1.0));
-		mBlurShader.ensureSamplerValidity([&]() {
-			mBlurShader.setUniformTexture(ctcrc32("uTexture"), mIntermediateImage);
+		blurShader.setUniformVector(ctcrc32("uBlurDirection"), glm::vec2(0.0, 1.0));
+		blurShader.ensureSamplerValidity([&]() {
+			blurShader.setUniformTexture(ctcrc32("uTexture"), mIntermediateImage);
 		});
 
 		framebuffer.bind();
 		Drawable::TriangleStripQuad::Draw();
+	}
+
+	void GaussianBlurEffect::blurWithStencilMask(
+		GLNormalizedTexture2D<GLTexture::Normalized::RGBA> &image,
+		GLFramebuffer &framebuffer,
+		const GaussianBlurSettings &settings
+	)
+	{
+		glDisable(GL_DEPTH_TEST);
+		glEnable(GL_STENCIL_TEST);
+		produceStencilMask(mFramebuffer);
+		produceStencilMask(framebuffer);
+
+		// Only render pixels with a stencil value of 1
+		glStencilFunc(GL_EQUAL, 1, 1);
+		glStencilOp(GL_KEEP, GL_KEEP, GL_KEEP);
+
+		blur(image, framebuffer, mFullBlurShader, settings);
+
+		glDisable(GL_STENCIL_TEST);
+		glEnable(GL_DEPTH_TEST);
+	}
+
+	void GaussianBlurEffect::blurWithVertexMask(
+		GLNormalizedTexture2D<GLTexture::Normalized::RGBA> &image,
+		GLFramebuffer &framebuffer,
+		const GaussianBlurSettings &settings
+	) 
+	{
+		glDisable(GL_DEPTH_TEST);
+		blur(image, framebuffer, mHalfBlurShader, settings);
+		glEnable(GL_DEPTH_TEST);
 	}
 
 }

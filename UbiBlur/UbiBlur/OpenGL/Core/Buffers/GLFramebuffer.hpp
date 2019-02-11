@@ -9,13 +9,13 @@
 #ifndef GLFramebuffer_hpp
 #define GLFramebuffer_hpp
 
-#include "GLNamedObject.hpp"
-#include "GLViewport.hpp"
-#include "GLTexture2D.hpp"
-
-#include "Size2D.hpp"
-#include "StringUtils.hpp"
-#include "BitwiseEnum.hpp"
+#include <GLNamedObject.hpp>
+#include <GLViewport.hpp>
+#include <GLTexture2D.hpp>
+#include <GLDepthStencilRenderbuffer.hpp>
+#include <Size2D.hpp>
+#include <StringUtils.hpp>
+#include <BitwiseEnum.hpp>
 
 #include <functional>
 #include <unordered_set>
@@ -94,6 +94,8 @@ namespace Engine {
 		}
 
         void attachDepthTexture(const GLDepthTexture2D &texture, uint16_t mipLevel = 0);
+
+		void attachRenderbuffer(const GLDepthStencilRenderbuffer &renderbuffer);
 
         void detachTexture(const GLTexture &texture);
 

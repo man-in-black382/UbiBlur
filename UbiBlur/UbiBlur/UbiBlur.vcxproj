@@ -92,7 +92,8 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions);GLFW_STATIC</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile>
+      </PrecompiledHeaderFile>
       <AdditionalIncludeDirectories>$(ProjectDir)/ThirdParty/glad/include;$(ProjectDir)/OpenGL/Core;$(ProjectDir)/ThirdParty/glfw/include;$(ProjectDir)/ThirdParty;$(ProjectDir)/OpenGL/Core/Textures;$(ProjectDir)/OpenGL/Core/Buffers;$(ProjectDir)/OpenGL/Core/Program;$(ProjectDir)/Foundation;$(ProjectDir)/Math;$(ProjectDir)/filesystem;$(ProjectDir)/Scene;$(ProjectDir)/ResourceManagement;$(ProjectDir)/Effects;$(ProjectDir)/ThirdParty/stb</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
@@ -134,7 +135,8 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions);GLFW_STATIC</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile>
+      </PrecompiledHeaderFile>
       <AdditionalIncludeDirectories>$(ProjectDir)/ThirdParty/glad/include;$(ProjectDir)/OpenGL/Core;$(ProjectDir)/ThirdParty/glfw/include;$(ProjectDir)/ThirdParty;$(ProjectDir)/OpenGL/Core/Textures;$(ProjectDir)/OpenGL/Core/Buffers;$(ProjectDir)/OpenGL/Core/Program;$(ProjectDir)/Foundation;$(ProjectDir)/Math;$(ProjectDir)/filesystem;$(ProjectDir)/Scene;$(ProjectDir)/ResourceManagement;$(ProjectDir)/Effects;$(ProjectDir)/ThirdParty/stb</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
@@ -190,8 +192,10 @@
     <ClInclude Include="Math\Vertices\Vertex1P1N2UV.hpp" />
     <ClInclude Include="Math\Vertices\Vertex1P1N2UV1T1BT.hpp" />
     <ClInclude Include="OpenGL\Core\Buffers\GLBuffer.hpp" />
+    <ClInclude Include="OpenGL\Core\Buffers\GLDepthStencilRenderbuffer.hpp" />
     <ClInclude Include="OpenGL\Core\Buffers\GLElementArrayBuffer.hpp" />
     <ClInclude Include="OpenGL\Core\Buffers\GLFramebuffer.hpp" />
+    <ClInclude Include="OpenGL\Core\Buffers\GLRenderbuffer.hpp" />
     <ClInclude Include="OpenGL\Core\Buffers\GLTextureBuffer.hpp" />
     <ClInclude Include="OpenGL\Core\Buffers\GLVertexArray.hpp" />
     <ClInclude Include="OpenGL\Core\Buffers\GLVertexArrayBuffer.hpp" />
@@ -212,8 +216,6 @@
     <ClInclude Include="Renderer.hpp" />
     <ClInclude Include="ResourceManagement\WavefrontMeshLoader.hpp" />
     <ClInclude Include="Scene\Camera.hpp" />
-    <ClInclude Include="Scene\DirectionalLight.hpp" />
-    <ClInclude Include="Scene\Light.hpp" />
     <ClInclude Include="Scene\Mesh.hpp" />
     <ClInclude Include="Scene\Transformation.hpp" />
     <ClInclude Include="ThirdParty\filesystem\fwd.h" />
@@ -388,7 +390,9 @@
     <ClCompile Include="Math\Triangle3D.cpp" />
     <ClCompile Include="Math\Vertices\Vertex1P1N2UV.cpp" />
     <ClCompile Include="Math\Vertices\Vertex1P1N2UV1T1BT.cpp" />
+    <ClCompile Include="OpenGL\Core\Buffers\GLDepthStencilRenderbuffer.cpp" />
     <ClCompile Include="OpenGL\Core\Buffers\GLFramebuffer.cpp" />
+    <ClCompile Include="OpenGL\Core\Buffers\GLRenderbuffer.cpp" />
     <ClCompile Include="OpenGL\Core\Buffers\GLVertexAttribute.cpp" />
     <ClCompile Include="OpenGL\Core\GLNamedObject.cpp" />
     <ClCompile Include="OpenGL\Core\GLTextureUnitManager.cpp" />
@@ -402,8 +406,6 @@
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="ResourceManagement\WavefrontMeshLoader.cpp" />
     <ClCompile Include="Scene\Camera.cpp" />
-    <ClCompile Include="Scene\DirectionalLight.cpp" />
-    <ClCompile Include="Scene\Light.cpp" />
     <ClCompile Include="Scene\Mesh.cpp" />
     <ClCompile Include="Scene\Transformation.cpp" />
     <ClCompile Include="ThirdParty\glad\src\glad.c" />
@@ -462,7 +464,8 @@
     <CustomBuild Include="Resources\Shaders\BackgroundPattern.frag">
       <FileType>Document</FileType>
     </CustomBuild>
-    <None Include="Resources\Shaders\GaussianBlur.vert" />
+    <None Include="Resources\Shaders\Empty.frag" />
+    <None Include="Resources\Shaders\HalfScreenQuad.vert" />
     <None Include="ThirdParty\glm\detail\func_common.inl" />
     <None Include="ThirdParty\glm\detail\func_common_simd.inl" />
     <None Include="ThirdParty\glm\detail\func_exponential.inl" />

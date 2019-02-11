@@ -7,6 +7,7 @@
 #include <GLVertexArray.hpp>
 #include <Drawable.hpp>
 #include <GaussianBlur/GaussianBlurEffect.hpp>
+#include <GLDepthStencilRenderbuffer.hpp>
 #include <filesystem/path.h>
 #include <memory>
 
@@ -20,7 +21,7 @@ namespace Engine {
 		Camera mCamera;
 		GLFramebuffer mFramebuffer;
 		GLNormalizedTexture2D<Engine::GLTexture::Normalized::RGBA> mRenderTarget;
-		GLDepthTexture2D mDepthBuffer;
+		GLDepthStencilRenderbuffer mDepthStencilRenderbuffer;
 
 		GLProgram mMeshShader;
 		GLProgram mRTOutputShader;

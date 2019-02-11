@@ -14,6 +14,7 @@
 #include <GLProgram.hpp>
 #include <filesystem/path.h>
 #include <GLFramebuffer.hpp>
+#include <GLDepthStencilRenderbuffer.hpp>
 
 #include "GaussianBlurSettings.hpp"
 
@@ -24,8 +25,11 @@ namespace Engine {
 
     class GaussianBlurEffect {
     private:
-		GLProgram mBlurShader;
+		GLProgram mHalfBlurShader;
+		GLProgram mFullBlurShader;
+		GLProgram mHalfQuadShader;
 		GLFramebuffer mFramebuffer;
+		GLDepthStencilRenderbuffer mDepthStencilRenderbuffer;
 		GLNormalizedTexture2D<GLTexture::Normalized::RGBA> mIntermediateImage;
         std::vector<float> mWeights;
         std::vector<float> mTextureOffsets;
@@ -33,12 +37,27 @@ namespace Engine {
 
         void computeWeightsAndOffsetsIfNeeded(const GaussianBlurSettings &settings);
 
+		void produceStencilMask(GLFramebuffer &fbo);
+
+		void blur(
+			GLNormalizedTexture2D<GLTexture::Normalized::RGBA> &image,
+			GLFramebuffer &framebuffer,
+			GLProgram &blurShader,
+			const GaussianBlurSettings &settings
+		);
+
     public:
 		GaussianBlurEffect(const filesystem::path &resourceRoot, const Size2D &rtSize);
 
-		void blur(
-			const GLNormalizedTexture2D<GLTexture::Normalized::RGBA> &image,
-			const GLFramebuffer &framebuffer,
+		void blurWithStencilMask(
+			GLNormalizedTexture2D<GLTexture::Normalized::RGBA> &image,
+			GLFramebuffer &framebuffer,
+			const GaussianBlurSettings &settings
+		);
+
+		void blurWithVertexMask(
+			GLNormalizedTexture2D<GLTexture::Normalized::RGBA> &image,
+			GLFramebuffer &framebuffer,
 			const GaussianBlurSettings &settings
 		);
 	};

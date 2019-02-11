@@ -153,8 +153,6 @@ namespace Engine {
         isModifyingUniforms = true;
         GLTextureUnitManager::Shared().unbindAllSamplers();
         closure();
-
-        // For some reason this is sometimes necessary to make GLSL sampler not return Black
         GLTextureUnitManager::Shared().activateUnit(GLTextureUnitManager::Shared().maximumTextureUnits() - 1);
         isModifyingUniforms = false;
     }

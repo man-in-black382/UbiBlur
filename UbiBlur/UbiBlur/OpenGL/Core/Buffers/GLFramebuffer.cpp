@@ -158,13 +158,18 @@ namespace Engine {
 
         mRequestedAttachments.insert(glAttachment);
 
-        // FIXME: Delete this line, then ensure rendering works across the application
         setRequestedDrawBuffers();
     }
 
     void GLFramebuffer::attachDepthTexture(const GLDepthTexture2D &texture, uint16_t mipLevel) {
         attachTextureToDepthAttachment(texture, mipLevel);
     }
+
+	void GLFramebuffer::attachRenderbuffer(const GLDepthStencilRenderbuffer &renderbuffer) {
+		bind();
+		renderbuffer.bind();
+		glFramebufferRenderbuffer(mBindingPoint, GL_DEPTH_STENCIL_ATTACHMENT, GL_RENDERBUFFER, renderbuffer.name());
+	}
 
     void GLFramebuffer::detachTexture(const GLTexture &texture) {
         bind();
